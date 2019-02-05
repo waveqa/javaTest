@@ -1,14 +1,15 @@
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
+import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class MainPage {
 
     private String signUpForm = "[data-id=\"signup\"]";
-    private SelenideElement txtUsername = $("[name='username']");
-    private SelenideElement txtPass = $("[name='password']");
+    private SelenideElement txtUsername = $(byName("username"));
+    private SelenideElement txtPass = $(byName("password"));
     private SelenideElement btnLogin = $("[id=\"signin-form\"] .button_success");
     private SelenideElement btnVerifyRecaptcha = $("[title=\"проверка recaptcha\"]");
     private ElementsCollection btnHidePostByIndex = $$(".collapse-button");
@@ -18,6 +19,7 @@ public class MainPage {
     private SelenideElement txtPhoneNumber = $(signUpForm + " [name=\"phone\"]");
     private SelenideElement txtEmail = $(signUpForm + " [name=\"email\"]");
     private SelenideElement btnCreateAccount = $(signUpForm + " [type=\"submit\"]");
+    private SelenideElement txtSignUpPassword = $(signUpForm + " [name=\"password\"]");
 
     public void setUsername(String value){
         txtUsername.setValue(value);
@@ -62,7 +64,7 @@ public class MainPage {
     }
 
     public void fillPassword(String value) {
-        txtPhoneNumber.setValue(value);
+        txtSignUpPassword.setValue(value);
     }
 
     public void clickCreateAccount() {
