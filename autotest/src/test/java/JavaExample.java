@@ -35,7 +35,7 @@ public class JavaExample {
         mainPage.fillEmail(commonHelper.getRandomEmail("test123"));
         mainPage.fillPassword(commonHelper.getRandomPassword(6,8));
         mainPage.clickCreateAccount();
-        sleep(4000);
+        sleep(5000);
     }
 
 }
