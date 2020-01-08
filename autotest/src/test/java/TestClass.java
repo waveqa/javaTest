@@ -9,7 +9,10 @@ import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -28,21 +31,31 @@ public class TestClass {
     @AfterClass
     public static void afterExec(){
         LOG.info("After class started");
-
-
             boolean isWindows = System.getProperty("os.name")
                     .toLowerCase().startsWith("windows");
 
-        ProcessBuilder builder = new ProcessBuilder();
+        ProcessBuilder processBuilder = new ProcessBuilder();
         if (isWindows) {
-            builder.command("cmd.exe", "mvn allure:report");
+            processBuilder.command("cmd.exe", "/c", "mvn allure:report");
         } else {
-            builder.command("mvn allure:report");
+            processBuilder.command("mvn allure:report");
         }
-        builder.directory(new File(System.getProperty("user.home")));
-        Process process = builder.start();
 
-        //mvn allure:report
+        try{
+            Process process = processBuilder.start();
+            int exitVal = process.waitFor();
+            if (exitVal == 0) {
+                System.out.println("Success!");
+//                System.exit(0);
+            } else {
+                //abnormal...
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         LOG.info("After class finished");
     }
 
@@ -79,11 +92,6 @@ public class TestClass {
     public void seeNewPosts(){
         mainPage.clickNewPosts();
         mainPage.getVerifyRecaptchaButton().shouldBe(Condition.visible);
-    }
-
-    @Test
-    public void seetest(){
-        assert 1==1;
     }
 
    /* @Test
