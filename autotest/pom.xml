@@ -16,6 +16,7 @@
         <aspectj.version>1.8.10</aspectj.version>
         <allure-junit4.version>2.13.1</allure-junit4.version>
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+        <runSuite>**/TestConfig.java</runSuite>
     </properties>
     <dependencies>
 
@@ -110,6 +111,9 @@
                             <value>${allure.results.directory}</value>
                         </property>
                     </systemProperties>
+                    <includes>
+                        <include>${runSuite}</include>
+                    </includes>
                 </configuration>
                 <dependencies>
                     <dependency>
