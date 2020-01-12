@@ -1,7 +1,8 @@
-import com.codeborne.selenide.Condition;
+package e2e;
+
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import services.helpers.CommonHelper;
+import services.MainPage;
 
 public class TestClass {
     MainPage mainPage = new MainPage();

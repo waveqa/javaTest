@@ -1,9 +1,8 @@
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import e2e.TestClass;
 import io.qameta.allure.Attachment;
 import org.junit.*;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.junit.runner.RunWith;
@@ -11,14 +10,11 @@ import org.junit.runners.Suite;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.junit.runners.Suite.SuiteClasses;
 
-import java.io.File;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
