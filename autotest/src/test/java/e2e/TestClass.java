@@ -5,7 +5,7 @@ import services.helpers.CommonHelper;
 import services.MainPage;
 import com.codeborne.selenide.Condition;
 
-public class TestClass {
+public class TestClass extends BaseTest {
     MainPage mainPage = new MainPage();
     CommonHelper commonHelper = new CommonHelper();
 
