@@ -3,6 +3,7 @@ package e2e;
 import org.junit.*;
 import services.helpers.CommonHelper;
 import services.MainPage;
+import com.codeborne.selenide.Condition;
 
 public class TestClass {
     MainPage mainPage = new MainPage();
