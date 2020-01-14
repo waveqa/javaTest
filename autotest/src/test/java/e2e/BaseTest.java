@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AllureRuleTest.class);
 
     @BeforeClass
     public static void setUp() {
@@ -64,27 +64,4 @@ public abstract class BaseTest {
         }
         LOG.info("After class finished");
     }
-
-    @Rule
-    public TestWatcher watchman = new TestWatcher() {
-        @Override
-        protected void failed(Throwable e, Description description) {
-            LOG.info("failed");
-            screenshot();
-        }
-
-        @Attachment(value = "Page screenshot", type = "image/png")
-        public byte[] saveScreenshot(byte[] screenShot) {
-            return screenShot;
-        }
-
-        public void screenshot() {
-            if (WebDriverRunner.getWebDriver() == null) {
-                LOG.info("Driver for screenshot not found");
-                return;
-            }
-            saveScreenshot(((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES));
-        }
-    };
-
 }
