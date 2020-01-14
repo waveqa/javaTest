@@ -23,6 +23,10 @@ public class MainPage {
     private SelenideElement btnCreateAccount = $(signUpForm + " [type=\"submit\"]");
     private SelenideElement txtSignUpPassword = $(signUpForm + " [name=\"password\"]");
 
+    public SelenideElement getTxtSignUpPassword() {
+        return txtSignUpPassword;
+    }
+
     public void setUsername(String value){
         txtUsername.setValue(value);
     }

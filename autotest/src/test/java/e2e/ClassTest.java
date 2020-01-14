@@ -1,13 +1,12 @@
 package e2e;
 
 import org.junit.*;
-import services.helpers.CommonHelper;
+import services.helpers.FakerHelper;
 import services.MainPage;
-import com.codeborne.selenide.Condition;
 
-public class TestClass extends BaseTest {
+public class ClassTest extends BaseTest {
     MainPage mainPage = new MainPage();
-    CommonHelper commonHelper = new CommonHelper();
+    FakerHelper fakerHelper = new FakerHelper();
 
 //    @Test
 //    public void loginWithIncorrectCredentials(){

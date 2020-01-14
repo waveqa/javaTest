@@ -2,25 +2,18 @@ package e2e;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import io.qameta.allure.Attachment;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import services.helpers.FakerHelper;
 import java.io.IOException;
-
-import static com.codeborne.selenide.Selenide.getElement;
 import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(AllureRuleTest.class);
+    protected FakerHelper fakerHelper;
 
     @BeforeClass
     public static void setUp() {
@@ -37,7 +30,6 @@ public abstract class BaseTest {
     @AfterClass
     public static void afterExec(){
         LOG.info("After class started");
-//        service.stop();
         boolean isWindows = System.getProperty("os.name")
                 .toLowerCase().startsWith("windows");
 

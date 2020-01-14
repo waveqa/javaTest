@@ -2,7 +2,7 @@ package services.helpers;
 
 import com.github.javafaker.Faker;
 
-public class CommonHelper {
+public class FakerHelper {
 
     Faker faker = new Faker();
 
