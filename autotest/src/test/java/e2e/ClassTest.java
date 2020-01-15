@@ -1,16 +1,16 @@
 package e2e;
 
+import com.codeborne.selenide.Condition;
 import org.junit.*;
-import services.helpers.FakerHelper;
 import services.MainPage;
 
 public class ClassTest extends BaseTest {
+
     MainPage mainPage = new MainPage();
-    FakerHelper fakerHelper = new FakerHelper();
 
 //    @Test
 //    public void loginWithIncorrectCredentials(){
-//        mainPage.login(commonHelper.getRandomName(), commonHelper.getRandomPassword(6,8));
+//        mainPage.login(fakerHelper.getRandomName(), fakerHelper.getRandomPassword(6,8));
 //        mainPage.getVerifyRecaptchaButton().shouldBe(Condition.visible)
 //                .pressEscape();
 //        mainPage.clickHidePostByIndex(0);
@@ -26,10 +26,10 @@ public class ClassTest extends BaseTest {
 //    @Test
 //    public void createNewUser(){
 //        mainPage.clickSignUp();
-//        mainPage.fillUsername(commonHelper.getRandomName());
-//        mainPage.fillPhoneNumber(commonHelper.getRandomPhoneNumber());
-//        mainPage.fillEmail(commonHelper.getRandomEmail("test123"));
-//        mainPage.fillPassword(commonHelper.getRandomPassword(6,8));
+//        mainPage.fillUsername(fakerHelper.getRandomName());
+//        mainPage.fillPhoneNumber(fakerHelper.getRandomPhoneNumber());
+//        mainPage.fillEmail(fakerHelper.getRandomEmail("test123"));
+//        mainPage.fillPassword(fakerHelper.getRandomPassword(6,8));
 //        mainPage.clickCreateAccount();
 //    }
 }

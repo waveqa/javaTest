@@ -5,10 +5,9 @@ import org.junit.Test;
 import services.MainPage;
 import services.helpers.FakerHelper;
 
-public class LoginTest {
+public class LoginTest extends BaseTest {
 
     MainPage mainPage = new MainPage();
-    FakerHelper fakerHelper = new FakerHelper();
 
     @Test
     public void loginWithIncorrectCredentials(){

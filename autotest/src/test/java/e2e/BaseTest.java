@@ -7,17 +7,40 @@ import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import services.helpers.FakerHelper;
+
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
+
 import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(AllureRuleTest.class);
-    protected FakerHelper fakerHelper;
+    protected FakerHelper fakerHelper = new FakerHelper();
+
+
+    public static String getProperty(String propName) {
+        try {
+            String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+            String appConfigPath = rootPath + "config.properties";
+            Properties appProps = new Properties();
+            appProps.load(new FileInputStream(appConfigPath));
+            String property = appProps.getProperty(propName);//"globalTimeout"
+            System.out.println(property);
+            return property;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return "1";
+        }
+
+    }
 
     @BeforeClass
     public static void setUp() {
         LOG.info("Before class started");
+        System.out.println(getProperty("globalTimeout"));
         Configuration.startMaximized = true;
         Configuration.timeout = 10000;
 //        Configuration.headless = true;
