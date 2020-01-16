@@ -8,8 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import services.helpers.FakerHelper;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -19,34 +18,29 @@ public abstract class BaseTest {
     private static final Logger LOG = LoggerFactory.getLogger(AllureRuleTest.class);
     protected FakerHelper fakerHelper = new FakerHelper();
 
+    private static String getDataFromProperty(String propName) {
+        try (InputStream input = new FileInputStream(".\\src\\test\\resources\\config.properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            System.out.println(prop.getProperty(propName));
 
-    public static String getProperty(String propName) {
-        try {
-            String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-            String appConfigPath = rootPath + "config.properties";
-            Properties appProps = new Properties();
-            appProps.load(new FileInputStream(appConfigPath));
-            String property = appProps.getProperty(propName);//"globalTimeout"
-            System.out.println(property);
-            return property;
-        }
-        catch (Exception e){
-            e.printStackTrace();
+            return prop.getProperty(propName);
+        } catch (IOException ex) {
+            ex.printStackTrace();
             return "1";
         }
-
     }
 
     @BeforeClass
     public static void setUp() {
         LOG.info("Before class started");
-        System.out.println(getProperty("globalTimeout"));
+        System.out.println();
         Configuration.startMaximized = true;
-        Configuration.timeout = 10000;
+        Configuration.timeout = Integer.parseInt(getDataFromProperty("globalTimeout"));
 //        Configuration.headless = true;
         System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
-        Configuration.browser = "chrome";
-        open("https://pikabu.ru/");
+        Configuration.browser = getDataFromProperty("browserName");
+        open(getDataFromProperty("baseUrl"));
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 
@@ -62,7 +56,6 @@ public abstract class BaseTest {
         } else {
             processBuilder.command("mvn allure:report");
         }
-
         try{
             Process process = processBuilder.start();
             int exitVal = process.waitFor();
