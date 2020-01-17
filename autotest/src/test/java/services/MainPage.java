@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class MainPage {
 
-    private String signUpForm = "[data-id=\"signup\"]";
+    private SelenideElement signUpForm = $("[data-id=\"signup\"]");
     private SelenideElement txtUsername = $(byName("username"));
     private SelenideElement txtPass = $(byName("password"));
     private SelenideElement btnLogin = $("[id=\"signin-form\"] .button_success");
@@ -17,11 +17,11 @@ public class MainPage {
     private ElementsCollection btnHidePostByIndex = $$(".collapse-button");
     private SelenideElement btnNew = $("[href=\"/new\"]");
     private SelenideElement btnSignup = $("[data-to=\"signup\"]");
-    private SelenideElement txtSignupUsername = $(signUpForm + " [name=\"username\"]");
-    private SelenideElement txtPhoneNumber = $(signUpForm + " [name=\"phone\"]");
-    private SelenideElement txtEmail = $(signUpForm + " [name=\"email\"]");
-    private SelenideElement btnCreateAccount = $(signUpForm + " [type=\"submit\"]");
-    private SelenideElement txtSignUpPassword = $(signUpForm + " [name=\"password\"]");
+    private SelenideElement txtSignupUsername = signUpForm.$("[name=\"username\"]");
+    private SelenideElement txtPhoneNumber = signUpForm.$("[name=\"phone\"]");
+    private SelenideElement txtEmail = signUpForm.$("[name=\"email\"]");
+    private SelenideElement btnCreateAccount = signUpForm.$("[type=\"submit\"]");
+    private SelenideElement txtSignUpPassword = signUpForm.$("[name=\"password\"]");
 
     public SelenideElement getTxtSignUpPassword() {
         return txtSignUpPassword;

@@ -3,7 +3,6 @@ package e2e;
 import com.codeborne.selenide.Condition;
 import org.junit.Test;
 import services.MainPage;
-import services.helpers.FakerHelper;
 
 public class LoginTest extends BaseTest {
 

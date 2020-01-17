@@ -18,7 +18,6 @@ public abstract class AllureRuleTest {
 
         @Override
         protected void failed(Throwable e, Description description) {
-            LOG.info("failed");
             screenshot();
         }
 
