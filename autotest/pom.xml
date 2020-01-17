@@ -110,6 +110,9 @@
                             <value>${allure.results.directory}</value>
                         </property>
                     </systemProperties>
+                    <includes>
+                        <include>${runSuite}</include>
+                    </includes>
                 </configuration>
                 <dependencies>
                     <dependency>
