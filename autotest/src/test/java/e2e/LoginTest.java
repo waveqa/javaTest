@@ -1,6 +1,5 @@
 package e2e;
 
-import com.codeborne.selenide.Condition;
 import org.junit.Test;
 import services.MainPage;
 
@@ -10,10 +9,9 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void loginWithIncorrectCredentials(){
-        System.out.println("Test login started");
         mainPage.login(fakerHelper.getRandomName(), fakerHelper.getRandomPassword(6,8));
-        mainPage.getVerifyRecaptchaButton().shouldBe(Condition.visible)
-                .pressEscape();
+        mainPage.getVerifyRecaptchaButton();
         mainPage.clickHidePostByIndex(0);
+        assert 1==2;
     }
 }

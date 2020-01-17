@@ -2,8 +2,14 @@ package e2e;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Attachment;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import services.helpers.FakerHelper;
@@ -22,7 +28,6 @@ public abstract class BaseTest {
         try (InputStream input = new FileInputStream(".\\src\\test\\resources\\config.properties")) {
             Properties prop = new Properties();
             prop.load(input);
-            System.out.println(prop.getProperty(propName));
 
             return prop.getProperty(propName);
         } catch (IOException ex) {
@@ -44,6 +49,28 @@ public abstract class BaseTest {
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
 
+    @Rule
+    public TestWatcher watchman = new TestWatcher() {
+
+        @Override
+        protected void failed(Throwable e, Description description) {
+            screenshot();
+        }
+
+        @Attachment(value = "Page screenshot", type = "image/png")
+        public byte[] saveScreenshot(byte[] screenShot) {
+            return screenShot;
+        }
+
+        public void screenshot() {
+            if (WebDriverRunner.getWebDriver() == null) {
+                LOG.info("Driver for screenshot not found");
+                return;
+            }
+            saveScreenshot(((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES));
+        }
+    };
+/*
     @AfterClass
     public static void afterExec(){
         LOG.info("After class started");
@@ -71,5 +98,5 @@ public abstract class BaseTest {
             e.printStackTrace();
         }
         LOG.info("After class finished");
-    }
+    }*/
 }

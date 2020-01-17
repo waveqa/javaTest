@@ -1,11 +1,11 @@
 package services;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byName;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
 
@@ -13,7 +13,7 @@ public class MainPage {
     private SelenideElement txtUsername = $(byName("username"));
     private SelenideElement txtPass = $(byName("password"));
     private SelenideElement btnLogin = $("[id=\"signin-form\"] .button_success");
-    private SelenideElement btnVerifyRecaptcha = $("[title=\"проверка recaptcha\"]");
+    private SelenideElement btnVerifyRecaptcha = $("[id=\"recaptcha-verify-button\"]");
     private ElementsCollection btnHidePostByIndex = $$(".collapse-button");
     private SelenideElement btnNew = $("[href=\"/new\"]");
     private SelenideElement btnSignup = $("[data-to=\"signup\"]");
@@ -22,6 +22,7 @@ public class MainPage {
     private SelenideElement txtEmail = signUpForm.$("[name=\"email\"]");
     private SelenideElement btnCreateAccount = signUpForm.$("[type=\"submit\"]");
     private SelenideElement txtSignUpPassword = signUpForm.$("[name=\"password\"]");
+    private SelenideElement captchaFrame = $("[title=\"recaptcha challenge\"]");
 
     public SelenideElement getTxtSignUpPassword() {
         return txtSignUpPassword;
@@ -35,8 +36,12 @@ public class MainPage {
         txtPass.setValue(value);
     }
 
-    public SelenideElement getVerifyRecaptchaButton() {
-        return btnVerifyRecaptcha;
+    public void getVerifyRecaptchaButton() {
+        captchaFrame.shouldBe(Condition.visible);
+        switchTo().frame(captchaFrame);
+        btnVerifyRecaptcha.shouldBe(Condition.visible);
+        btnVerifyRecaptcha.pressEscape();
+        switchTo().defaultContent();
     }
 
     public void clickLogin(){
