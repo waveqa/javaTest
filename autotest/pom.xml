@@ -53,14 +53,7 @@
             <version>2.13.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -110,9 +103,6 @@
                             <value>${allure.results.directory}</value>
                         </property>
                     </systemProperties>
-                    <includes>
-                        <include>${runSuite}</include>
-                    </includes>
                 </configuration>
                 <dependencies>
                     <dependency>

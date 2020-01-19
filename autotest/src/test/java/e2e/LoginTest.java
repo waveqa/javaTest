@@ -12,6 +12,5 @@ public class LoginTest extends BaseTest {
         mainPage.login(fakerHelper.getRandomName(), fakerHelper.getRandomPassword(6,8));
         mainPage.getVerifyRecaptchaButton();
         mainPage.clickHidePostByIndex(0);
-        assert 1==2;
     }
 }

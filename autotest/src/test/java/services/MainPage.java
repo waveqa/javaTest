@@ -13,7 +13,7 @@ public class MainPage {
     private SelenideElement txtUsername = $(byName("username"));
     private SelenideElement txtPass = $(byName("password"));
     private SelenideElement btnLogin = $("[id=\"signin-form\"] .button_success");
-    private SelenideElement btnVerifyRecaptcha = $("[id=\"recaptcha-verify-button\"]");
+    private SelenideElement btnVerifyRecaptcha = $("#recaptcha-verify-button");
     private ElementsCollection btnHidePostByIndex = $$(".collapse-button");
     private SelenideElement btnNew = $("[href=\"/new\"]");
     private SelenideElement btnSignup = $("[data-to=\"signup\"]");

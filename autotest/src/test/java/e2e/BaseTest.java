@@ -21,8 +21,10 @@ import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AllureRuleTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
     protected FakerHelper fakerHelper = new FakerHelper();
+    @Rule
+    public AllureRule allureRule = new AllureRule();
 
     private static String getDataFromProperty(String propName) {
         try (InputStream input = new FileInputStream(".\\src\\test\\resources\\config.properties")) {
@@ -48,7 +50,7 @@ public abstract class BaseTest {
         open(getDataFromProperty("baseUrl"));
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
-
+/*
     @Rule
     public TestWatcher watchman = new TestWatcher() {
 
@@ -70,7 +72,7 @@ public abstract class BaseTest {
             saveScreenshot(((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES));
         }
     };
-/*
+
     @AfterClass
     public static void afterExec(){
         LOG.info("After class started");
