@@ -23,6 +23,16 @@ public class MainPage {
     private SelenideElement btnCreateAccount = signUpForm.$("[type=\"submit\"]");
     private SelenideElement txtSignUpPassword = signUpForm.$("[name=\"password\"]");
     private SelenideElement captchaFrame = $("[title=\"recaptcha challenge\"]");
+    private SelenideElement inputTooltip = $(".popup__hint");
+
+    public SelenideElement getInputTooltip() {
+        return inputTooltip;
+    }
+
+    public void setInputTooltip(SelenideElement inputTooltip) {
+        this.inputTooltip = inputTooltip;
+    }
+
 
     public SelenideElement getTxtSignUpPassword() {
         return txtSignUpPassword;
@@ -34,6 +44,10 @@ public class MainPage {
 
     public void setPassword(String value){
         txtPass.setValue(value);
+    }
+
+    public SelenideElement getInputError(String field) {
+        return $(".input_error").$(byName(field));
     }
 
     public void getVerifyRecaptchaButton() {
