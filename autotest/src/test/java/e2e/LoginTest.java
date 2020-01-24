@@ -7,6 +7,7 @@ import services.MainPage;
 public class LoginTest extends BaseTest {
 
     MainPage mainPage = new MainPage();
+    private String tooltipMessage = "Обязательное поле";
 
     @Test
     public void loginWithIncorrectCredentials() {
@@ -19,7 +20,7 @@ public class LoginTest extends BaseTest {
     public void loginWithoutCredentials() {
         mainPage.getInputTooltip().shouldBe(Condition.disappears);
         mainPage.clickLogin();
-        mainPage.getInputTooltip().shouldHave(Condition.text("Обязательное поле"));
+        mainPage.getInputTooltip().shouldHave(Condition.text(tooltipMessage));
     }
 
     @Test
@@ -28,7 +29,7 @@ public class LoginTest extends BaseTest {
                 Integer.parseInt(commonHelper.getDataFromProperty("globalTimeout")));
         mainPage.login("", fakerHelper.getRandomPassword(6,8));
         mainPage.getInputError("email").shouldBe(Condition.visible);
-        mainPage.getInputTooltip().shouldHave(Condition.text("Обязательное поле"));
+        mainPage.getInputTooltip().shouldHave(Condition.text(tooltipMessage));
     }
 
     @Test
@@ -37,6 +38,6 @@ public class LoginTest extends BaseTest {
                 Integer.parseInt(commonHelper.getDataFromProperty("globalTimeout")));
         mainPage.login(fakerHelper.getRandomName(), "");
         mainPage.getInputError("password").shouldBe(Condition.visible);
-        mainPage.getInputTooltip().shouldHave(Condition.text("Обязательное поле"));
+        mainPage.getInputTooltip().shouldHave(Condition.text(tooltipMessage));
     }
 }
